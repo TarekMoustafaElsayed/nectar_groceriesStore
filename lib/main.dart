@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nectar_groceries/view/splash_view.dart';
 
 import 'common/color_extension.dart';
+import 'view/main_tab_view/main_tab_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: TColor.primary),
         useMaterial3: false,
       ),
-      home: const SplashView(),
+      home: const MainTabView(),
     );
   }
 }

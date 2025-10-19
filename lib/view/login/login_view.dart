@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nectar_groceries/view/login/verification_view.dart';
+import 'package:nectar_groceries/view/main_tab_view/main_tab_view.dart';
 import '../../common/color_extension.dart';
 import '../../common/common_widget/line_textfield.dart';
 import '../../common/common_widget/round_button.dart';
@@ -127,8 +128,8 @@ class _LogInViewState extends State<LogInView> {
                     SizedBox(height: media.width * 0.05,),
 
                     RoundButton(title: "Log In", onPressed: (){
-                      //Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                      //const SignInView()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                      const MainTabView()));
                     },),
 
                     SizedBox(height: media.width * 0.02,),
