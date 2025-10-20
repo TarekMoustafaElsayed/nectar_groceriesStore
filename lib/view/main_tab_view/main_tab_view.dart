@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nectar_groceries/view/explore/explore_view.dart';
 import 'package:nectar_groceries/view/home/home_view.dart';
 
 import '../../common/color_extension.dart';
@@ -42,8 +43,7 @@ class _MainTabViewState extends State<MainTabView>  with SingleTickerProviderSta
           children: [
 
             const HomeView(),
-            
-            Container(),
+            const ExploreView(),
             Container(),
             Container(),
             Container(),
