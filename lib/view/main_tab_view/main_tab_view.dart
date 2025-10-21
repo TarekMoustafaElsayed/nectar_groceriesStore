@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nectar_groceries/view/explore/explore_view.dart';
+import 'package:nectar_groceries/view/favourite/favourite_view.dart';
 import 'package:nectar_groceries/view/home/home_view.dart';
 
 import '../../common/color_extension.dart';
+import '../my_cart/my_cart_view.dart';
 
 class MainTabView extends StatefulWidget {
   const MainTabView({super.key});
@@ -44,8 +46,8 @@ class _MainTabViewState extends State<MainTabView>  with SingleTickerProviderSta
 
             const HomeView(),
             const ExploreView(),
-            Container(),
-            Container(),
+            const MyCartView(),
+            const FavouritesView(),
             Container(),
 
           ] ) ,
