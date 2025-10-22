@@ -127,6 +127,8 @@ class _AccountViewState extends State<AccountView> {
                     onPressed: (){}
                 ),
 
+                const SizedBox(width: 20,height: 80,), //Tiny adjustment to move the logout a bit downwards
+
                 Padding(
                   //padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 90),
                   padding: const EdgeInsets.all(20.0),
