@@ -4,6 +4,7 @@ import 'package:nectar_groceries/view/favourite/favourite_view.dart';
 import 'package:nectar_groceries/view/home/home_view.dart';
 
 import '../../common/color_extension.dart';
+import '../account/account_view.dart';
 import '../my_cart/my_cart_view.dart';
 
 class MainTabView extends StatefulWidget {
@@ -48,7 +49,7 @@ class _MainTabViewState extends State<MainTabView>  with SingleTickerProviderSta
             const ExploreView(),
             const MyCartView(),
             const FavouritesView(),
-            Container(),
+            const AccountView(),
 
           ] ) ,
       bottomNavigationBar: Container(
