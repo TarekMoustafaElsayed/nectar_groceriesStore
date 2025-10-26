@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nectar_groceries/view/login/verification_view.dart';
 import 'package:nectar_groceries/view/main_tab_view/main_tab_view.dart';
+import 'package:nectar_groceries/view_model/login_view_model.dart';
 import '../../common/color_extension.dart';
 import '../../common/common_widget/line_textfield.dart';
 import '../../common/common_widget/round_button.dart';
@@ -15,10 +17,7 @@ class LogInView extends StatefulWidget {
 
 class _LogInViewState extends State<LogInView> {
 
-  TextEditingController txtEmail = TextEditingController();
-  TextEditingController txtPassword = TextEditingController();
-
-  bool isShow = false;
+  final loginVM = Get.put(LoginViewModel());
 
   @override
   Widget build(BuildContext context){
@@ -88,28 +87,32 @@ class _LogInViewState extends State<LogInView> {
 
                     SizedBox(height: media.width * 0.1,),
 
-                    LineTextField(title: "Email", placeholder: "Enter your email address", controller: txtEmail,keyboardType: TextInputType.emailAddress,),
+                    LineTextField(
+                      title: "Email",
+                      placeholder: "Enter your email address",
+                      controller: loginVM.txtEmail.value,
+                      keyboardType: TextInputType.emailAddress,
+                    ),
 
                     SizedBox(height: media.width * 0.07,),
 
-                    LineTextField(
+                    Obx(
+                          () => LineTextField(
                       title: "Password",
                       placeholder: "Enter your password",
-                      controller: txtPassword,
-                      obscureText: isShow,
+                      controller: loginVM.txtPassword.value,
+                      obscureText: !loginVM.isShowPassword.value,
                       right: IconButton(
                           onPressed: (){
-                            setState(() {
-                              isShow = !isShow;
-                            });
+                            loginVM.showPassword();
                           },
                           icon: Icon(
-                            !isShow ? Icons.visibility_off : Icons.visibility,
+                           !loginVM.isShowPassword.value ? Icons.visibility_off : Icons.visibility,
                             color: TColor.textTittle,
                           ),
-                      ) ,
+                      ),
+                          ),
                     ),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -128,8 +131,9 @@ class _LogInViewState extends State<LogInView> {
                     SizedBox(height: media.width * 0.05,),
 
                     RoundButton(title: "Log In", onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                      const MainTabView()));
+                      loginVM.servicecCallLogin();
+                      //Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                      //const MainTabView()));
                     },),
 
                     SizedBox(height: media.width * 0.02,),

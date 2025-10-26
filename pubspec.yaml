@@ -36,6 +36,18 @@ dependencies:
   cupertino_icons: ^1.0.8
   fl_country_code_picker: ^0.1.5
   flutter_rating_bar: ^4.0.1
+  get: ^4.6.5
+  http: ^1.1.0
+  shared_preferences: ^2.2.0
+  intl: ^0.20.2
+  flutter_timezone: ^1.0.6
+  flutter_easyloading: ^3.0.5
+  #get_it: ^7.6.0
+  #custom_map_markers: ^0.0.2+1
+  #otp_pin_field: ^1.2.0+2
+
+  #dependency_overrides:
+    #intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:

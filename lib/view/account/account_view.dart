@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:nectar_groceries/view_model/splash_view_model.dart';
 
 import '../../common/color_extension.dart';
 import '../../common/common_widget/account_row.dart';
@@ -11,6 +14,9 @@ class AccountView extends StatefulWidget {
 }
 
 class _AccountViewState extends State<AccountView> {
+
+  final splashVM = Get.find<SplashViewModel>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,7 +144,7 @@ class _AccountViewState extends State<AccountView> {
 
                       MaterialButton(
                         onPressed: () {
-
+                          splashVM.logout();
                         },
                         height: 60,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(19)),

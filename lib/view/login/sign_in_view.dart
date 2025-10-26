@@ -1,5 +1,9 @@
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:nectar_groceries/view/login/login_view.dart';
+import 'package:nectar_groceries/view/login/sign_up_view.dart';
 import 'package:nectar_groceries/view/login/verification_view.dart';
 
 import '../../common/color_extension.dart';
@@ -51,7 +55,7 @@ class _SignInViewState extends State<SignInView> {
                   children: [
 
                     SizedBox(
-                      height: media.width * 1,
+                      height: media.width * 0.7,
                     ),
 
                 Padding(
@@ -131,6 +135,37 @@ class _SignInViewState extends State<SignInView> {
                   ],
                 ),
               ),
+
+                    const SizedBox(
+                      height: 25,
+                    ),
+
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: RoundButton(
+                        title: "Sign In With Email",
+                        bgColor: const Color(0xff5383EC),
+                        onPressed: (){
+                          Get.to( () => const LogInView());
+                        },
+                      ),
+                    ),
+
+                    const SizedBox(
+                      height: 15,
+                    ),
+
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: RoundButton(
+                        title: "Sign Up With Email",
+                        onPressed: (){
+                          Get.to( () => const SignUpView());
+                        },
+                      ),
+                    ),
 
                     const SizedBox(
                       height: 25,
