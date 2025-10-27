@@ -1,6 +1,6 @@
 var db = require('./../helpers/db_helpers')
 var helper = require('./../helpers/helpers')
-// var multiparty = require(multiparty)
+//var multiparty = require(multiparty)
 var imageSavePath = "./public/img/"
 var image_base_url = helper.ImagePath();
 

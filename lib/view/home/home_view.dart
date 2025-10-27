@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:nectar_groceries/common/common_widget/category_cell.dart';
 import 'package:nectar_groceries/common/common_widget/product_cell.dart';
 import 'package:nectar_groceries/common/common_widget/section_view.dart';
+import 'package:nectar_groceries/model/offer_product_model.dart';
 import 'package:nectar_groceries/view/home/product_details_view.dart';
+import 'package:nectar_groceries/view_model/home_view_model.dart';
 
 import '../../common/color_extension.dart';
 
@@ -16,7 +20,9 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   TextEditingController txtSearch = TextEditingController();
 
-  List execlusiveOfferArr = [
+  final homeVM = Get.put( HomeViewModel() );
+
+  /*List execlusiveOfferArr = [
     {
       "name" : "Organic Bananas",
       "icon" : "assets/img/banana.png",
@@ -31,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
       "unit" : "kg, Prices",
       "price" : "\$4.99"
     }
-  ];
+  ];*/
 
   List bestSellingArr = [
     {
@@ -181,15 +187,17 @@ class _HomeViewState extends State<HomeView> {
                         onPressed: () {},
                     ),
 
+
+
                     SizedBox(
                       height: 230,
-                      child: ListView.builder(
+                      child: Obx(() => ListView.builder(
                           scrollDirection: Axis.horizontal,
                           padding: const EdgeInsets.symmetric(horizontal: 15),
-                          itemCount: execlusiveOfferArr.length,
+                          itemCount: homeVM.offerArr.length,
                           itemBuilder: (context,index){
 
-                            var pObj = execlusiveOfferArr[index] as Map ? ?? {};
+                            var pObj = homeVM.offerArr[index];
 
                             return ProductCell(
                               pObj: pObj,
@@ -199,10 +207,11 @@ class _HomeViewState extends State<HomeView> {
                               onCart: (){},
                             );
                       } ),
+                      ),
                     ),
 
                     SectionView(
-                      title: "Best Setting",
+                      title: "Best Selling",
                       padding: const EdgeInsets.symmetric(
                           vertical: 15, horizontal: 20
                       ),
@@ -211,13 +220,13 @@ class _HomeViewState extends State<HomeView> {
 
                     SizedBox(
                       height: 230,
-                      child: ListView.builder(
+                      child: Obx(() => ListView.builder(
                           scrollDirection: Axis.horizontal,
                           padding: const EdgeInsets.symmetric(horizontal: 15),
-                          itemCount: bestSellingArr.length,
+                          itemCount: homeVM.bestSellingArr.length,
                           itemBuilder: (context,index){
 
-                            var pObj = bestSellingArr[index] as Map ? ?? {};
+                            var pObj = homeVM.bestSellingArr[index];
 
                             return ProductCell(
                               pObj: pObj,
@@ -226,7 +235,8 @@ class _HomeViewState extends State<HomeView> {
                               },
                               onCart: (){},
                             );
-                          } ),
+                          }),
+                      ),
                     ),
 
                     SectionView(
@@ -239,32 +249,33 @@ class _HomeViewState extends State<HomeView> {
 
                     SizedBox(
                       height: 100,
-                      child: ListView.builder(
+                      child: Obx(() => ListView.builder(
                           scrollDirection: Axis.horizontal,
                           padding: const EdgeInsets.symmetric(horizontal: 15),
-                          itemCount: groceriesArr.length,
+                          itemCount: homeVM.groceriesArr.length,
                           itemBuilder: (context,index){
 
-                            var pObj = groceriesArr[index] as Map ? ?? {};
+                            var pObj = homeVM.groceriesArr[index];
 
                             return CategoryCell(
                               pObj: pObj,
                               onPressed: (){},
                             );
                           } ),
+                      ),
                     ),
 
                     const SizedBox(height: 15,),
 
                     SizedBox(
                       height: 230,
-                      child: ListView.builder(
+                      child: Obx(() => ListView.builder(
                           scrollDirection: Axis.horizontal,
                           padding: const EdgeInsets.symmetric(horizontal: 15),
-                          itemCount: listArr.length,
+                          itemCount: homeVM.listArr.length,
                           itemBuilder: (context,index){
 
-                            var pObj = listArr[index] as Map ? ?? {};
+                            var pObj = homeVM.listArr[index];
 
                             return ProductCell(
                               pObj: pObj,
@@ -274,6 +285,7 @@ class _HomeViewState extends State<HomeView> {
                               onCart: (){},
                             );
                           } ),
+                      ),
                     ),
 
                     const SizedBox(height: 20,),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nectar_groceries/common/common_widget/product_cell.dart';
+import 'package:nectar_groceries/model/offer_product_model.dart';
 import 'package:nectar_groceries/view/explore/filter_view.dart';
 
 import '../../common/color_extension.dart';
@@ -116,7 +117,26 @@ class _ExploreDetailViewState extends State<ExploreDetailView> {
               itemBuilder: ((context,index) {
                 var pObj = listArr[index] as Map? ?? {};
                 return ProductCell(
-                  pObj: pObj,
+                  pObj: OfferProductModel.fromJson({
+                    "offer_price": 1.49,
+                    "start_date": "2024-12-31T18:30:00.000Z",
+                    "end_date": "2026-12-31T18:29:59.000Z",
+                    "prod_id": 6,
+                    "cat_id": 1,
+                    "brand_id": 1,
+                    "type_id": 1,
+                    "name": "Red Apple",
+                    "detail": "Apples contain key nutrients, including fiber and antioxidants. They may offer health benefits, including lowering blood sugar levels and benefitting heart health.",
+                    "unit_name": "kg",
+                    "unit_value": "1",
+                    "nutrition_weight": "182g",
+                    "price": 1.99,
+                    "image": "http://localhost:3001/img/product/202307310951365136W6nJvPCdzQ.png",
+                    "cat_name": "Frash Fruits & Vegetable",
+                    "type_name": "Pulses",
+                    "is_fav": 1,
+                    "avg_rating": 0
+                  },),
                   margin: 0,
                   weight: double.maxFinite,
                   onPressed: () {},

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../main.dart';
 
@@ -79,50 +80,50 @@ class Globs {
 }
 
 class SVKey {
-  static const mainUrl = "http://localhost:3001";
-  static const baseUrl = '$mainUrl/api/app/';
-  static const nodeUrl = mainUrl;
+  static final mainUrl = dotenv.env['LOCAL_HOST'] ?? 'http://localhost:3001'; //Replace local host with your own IP Address
+  static final baseUrl = '$mainUrl/api/app/';
+  static final nodeUrl = mainUrl;
 
-  static const svLogin = '${baseUrl}login';
-  static const svSignUp = '${baseUrl}sign_up';
-  static const svHome = '${baseUrl}home';
-  static const svProductDetail = '${baseUrl}product_detail';
-  static const svAddRemoveFavorite = '${baseUrl}add_remove_favorite';
-  static const svFavorite = '${baseUrl}favorite_list';
-  static const svExploreList = '${baseUrl}explore_category_list';
-  static const svExploreItemList = '${baseUrl}explore_category_items_list';
+  static final svLogin = '${baseUrl}login';
+  static final svSignUp = '${baseUrl}sign_up';
+  static final svHome = '${baseUrl}home';
+  static final svProductDetail = '${baseUrl}product_detail';
+  static final svAddRemoveFavorite = '${baseUrl}add_remove_favorite';
+  static final svFavorite = '${baseUrl}favorite_list';
+  static final svExploreList = '${baseUrl}explore_category_list';
+  static final svExploreItemList = '${baseUrl}explore_category_items_list';
 
-  static const svAddToCart = '${baseUrl}add_to_cart';
-  static const svUpdateCart = '${baseUrl}update_cart';
-  static const svRemoveCart = '${baseUrl}remove_cart';
-  static const svCartList = '${baseUrl}cart_list';
-  static const svOrderPlace = '${baseUrl}order_place';
+  static final svAddToCart = '${baseUrl}add_to_cart';
+  static final svUpdateCart = '${baseUrl}update_cart';
+  static final svRemoveCart = '${baseUrl}remove_cart';
+  static final svCartList = '${baseUrl}cart_list';
+  static final svOrderPlace = '${baseUrl}order_place';
 
-  static const svAddDeliveryAddress = '${baseUrl}add_delivery_address';
-  static const svUpdateDeliveryAddress = '${baseUrl}update_delivery_address';
-  static const svDeleteDeliveryAddress = '${baseUrl}delete_delivery_address';
-  static const svDeliveryAddress = '${baseUrl}delivery_address';
+  static final svAddDeliveryAddress = '${baseUrl}add_delivery_address';
+  static final svUpdateDeliveryAddress = '${baseUrl}update_delivery_address';
+  static final svDeleteDeliveryAddress = '${baseUrl}delete_delivery_address';
+  static final svDeliveryAddress = '${baseUrl}delivery_address';
 
-  static const svAddPaymentMethod = '${baseUrl}add_payment_method';
-  static const svRemovePaymentMethod = '${baseUrl}remove_payment_method';
-  static const svPaymentMethodList = '${baseUrl}payment_method';
+  static final svAddPaymentMethod = '${baseUrl}add_payment_method';
+  static final svRemovePaymentMethod = '${baseUrl}remove_payment_method';
+  static final svPaymentMethodList = '${baseUrl}payment_method';
 
-  static const svMarkDefaultDeliveryAddress = '${baseUrl}mark_default_delivery_address';
+  static final svMarkDefaultDeliveryAddress = '${baseUrl}mark_default_delivery_address';
 
-  static const svPromoCodeList = '${baseUrl}promo_code_list';
-  static const svMyOrders = '${baseUrl}my_order';
-  static const svMyOrdersDetail = '${baseUrl}my_order_detail';
+  static final svPromoCodeList = '${baseUrl}promo_code_list';
+  static final svMyOrders = '${baseUrl}my_order';
+  static final svMyOrdersDetail = '${baseUrl}my_order_detail';
 
-  static const svNotificationList = '${baseUrl}notification_list';
-  static const svNotificationReadAll = '${baseUrl}notification_read_all';
+  static final svNotificationList = '${baseUrl}notification_list';
+  static final svNotificationReadAll = '${baseUrl}notification_read_all';
 
-  static const svUpdateProfile = '${baseUrl}update_profile';
-  static const svChangePassword = '${baseUrl}change_password';
-  static const svForgotPasswordRequest = '${baseUrl}forgot_password_request';
-  static const svForgotPasswordVerify = '${baseUrl}forgot_password_verify';
-  static const svForgotPasswordSetPassword = '${baseUrl}forgot_password_set_password';
+  static final svUpdateProfile = '${baseUrl}update_profile';
+  static final svChangePassword = '${baseUrl}change_password';
+  static final svForgotPasswordRequest = '${baseUrl}forgot_password_request';
+  static final svForgotPasswordVerify = '${baseUrl}forgot_password_verify';
+  static final svForgotPasswordSetPassword = '${baseUrl}forgot_password_set_password';
 
-  static const svProductRatingReview = "${baseUrl}order_product_review_add";
+  static final svProductRatingReview = "${baseUrl}order_product_review_add";
 }
 
 class KKey {

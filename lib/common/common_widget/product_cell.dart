@@ -1,9 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
+import 'package:nectar_groceries/model/offer_product_model.dart';
 import '../color_extension.dart';
 
 class ProductCell extends StatelessWidget {
-  final Map pObj;
+  final OfferProductModel pObj;
   final VoidCallback onPressed;
   final VoidCallback onCart;
   final double margin;
@@ -36,8 +37,13 @@ class ProductCell extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  pObj["icon"],
+
+                CachedNetworkImage(
+                  imageUrl: pObj.image ?? "",
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                   width: 100,
                   height: 80,
                   fit: BoxFit.contain,
@@ -48,7 +54,7 @@ class ProductCell extends StatelessWidget {
             const Spacer(),
 
             Text(
-              pObj["name"],
+              pObj.name ?? "",
               style: TextStyle(
                   color: TColor.primaryText,
                   fontSize: 16,
@@ -58,7 +64,7 @@ class ProductCell extends StatelessWidget {
             const SizedBox(height: 2,),
 
             Text(
-              "${pObj["qty"]}${pObj["unit"]}",
+              "${pObj.unitValue}${pObj.unitName}",
               style: TextStyle(
                   color: TColor.secondaryText,
                   fontSize: 14,
@@ -71,7 +77,7 @@ class ProductCell extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  pObj["price"],
+                  "\$${ pObj.offerPrice ?? pObj.price }",
                   style: TextStyle(
                       color: TColor.primaryText,
                       fontSize: 18,

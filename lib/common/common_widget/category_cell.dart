@@ -1,9 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:nectar_groceries/model/type_model.dart';
 
 import '../color_extension.dart';
 
 class CategoryCell extends StatelessWidget {
-  final Map pObj;
+  final TypeModel pObj;
   final VoidCallback onPressed;
   const CategoryCell({super.key, required this.pObj, required this.onPressed});
 
@@ -16,7 +18,7 @@ class CategoryCell extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 8),
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
-          color: (pObj["color"] as Color? ?? TColor.primary).withOpacity(0.3),
+          color: ( pObj.color ?? TColor.primary).withOpacity(0.3),
           borderRadius: BorderRadius.circular(15),
         ),
         child: Column(
@@ -26,8 +28,13 @@ class CategoryCell extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  pObj["icon"],
+
+                CachedNetworkImage(
+                  imageUrl: pObj.image ?? "",
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                   width: 70,
                   height: 70,
                   fit: BoxFit.contain,
@@ -37,7 +44,7 @@ class CategoryCell extends StatelessWidget {
 
                 Expanded(
                   child: Text(
-                    pObj["name"],
+                    pObj.typeName ?? "",
                     style: TextStyle(
                         color: TColor.primaryText,
                         fontSize: 16,

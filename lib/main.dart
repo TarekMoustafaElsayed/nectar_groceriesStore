@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:nectar_groceries/view/splash_view.dart';
@@ -14,6 +15,7 @@ SharedPreferences? prefs;
 void main() async {
   HttpOverrides.global = MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env"); // I am just loading my own environment variables.
   prefs = await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
