@@ -22,69 +22,11 @@ class _HomeViewState extends State<HomeView> {
 
   final homeVM = Get.put( HomeViewModel() );
 
-  /*List execlusiveOfferArr = [
-    {
-      "name" : "Organic Bananas",
-      "icon" : "assets/img/banana.png",
-      "qty" : "7",
-      "unit" : "pcs, Prices",
-      "price" : "\$1.99"
-    },
-    {
-      "name" : "Red Apple",
-      "icon" : "assets/img/apple_red.png",
-      "qty" : "1",
-      "unit" : "kg, Prices",
-      "price" : "\$4.99"
-    }
-  ];*/
-
-  List bestSellingArr = [
-    {
-      "name" : "Red Bell Pepper",
-      "icon" : "assets/img/bell_pepper_red.png",
-      "qty" : "1",
-      "unit" : "kg, Prices",
-      "price" : "\$2.99"
-    },
-    {
-      "name" : "Ginger",
-      "icon" : "assets/img/ginger.png",
-      "qty" : "250",
-      "unit" : "gm, Prices",
-      "price" : "\$3.99"
-    }
-  ];
-
-  List groceriesArr = [
-    {
-      "name" : "Pulses",
-      "icon" : "assets/img/pulses.png",
-      "color" : Color(0xffF8A44C),
-    },
-    {
-      "name" : "Rice",
-      "icon" : "assets/img/rice.png",
-      "color" : Color(0xff53B175),
-    },
-  ];
-
-  List listArr = [
-    {
-      "name" : "Beef Bone",
-      "icon" : "assets/img/beef_bone.png",
-      "qty" : "1",
-      "unit" : "kg, Prices",
-      "price" : "\$4.99"
-    },
-    {
-      "name" : "Broiler Chicken",
-      "icon" : "assets/img/broiler_chicken.png",
-      "qty" : "1",
-      "unit" : "kg, Prices",
-      "price" : "\$4.99"
-    }
-  ];
+  @override
+  void dispose() {
+    Get.delete<HomeViewModel>();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context){
@@ -202,7 +144,7 @@ class _HomeViewState extends State<HomeView> {
                             return ProductCell(
                               pObj: pObj,
                               onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductDetails()));
+                                Get.to( () => ProductDetails(pObj: pObj,) );
                               },
                               onCart: (){},
                             );
@@ -231,7 +173,7 @@ class _HomeViewState extends State<HomeView> {
                             return ProductCell(
                               pObj: pObj,
                               onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductDetails()));
+                                Get.to( () => ProductDetails(pObj: pObj,) );
                               },
                               onCart: (){},
                             );
@@ -280,7 +222,7 @@ class _HomeViewState extends State<HomeView> {
                             return ProductCell(
                               pObj: pObj,
                               onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductDetails()));
+                                Get.to( () => ProductDetails(pObj: pObj,) );
                               },
                               onCart: (){},
                             );
