@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:nectar_groceries/common/common_widget/product_cell.dart';
+import 'package:nectar_groceries/model/explore_category_model.dart';
 import 'package:nectar_groceries/model/offer_product_model.dart';
 import 'package:nectar_groceries/view/explore/filter_view.dart';
+import 'package:nectar_groceries/view_model/explore_item_view_model.dart';
 
 import '../../common/color_extension.dart';
+import '../home/product_details_view.dart';
 
 class ExploreDetailView extends StatefulWidget {
-  final Map eObj;
+  final ExploreCategoryModel eObj;
   const ExploreDetailView({super.key, required this.eObj});
 
   @override
@@ -15,51 +20,19 @@ class ExploreDetailView extends StatefulWidget {
 
 class _ExploreDetailViewState extends State<ExploreDetailView> {
 
-  List listArr = [
-    {
-      "name" : "Diet Coke",
-      "icon" : "assets/img/diet_coke.png",
-      "qty" : "355",
-      "unit": "ml, Price",
-      "price": "\$1.99",
-    },
-    {
-      "name" : "Sprite Can",
-      "icon" : "assets/img/sprite_can.png",
-      "qty" : "325",
-      "unit": "ml, Price",
-      "price": "\$1.49",
-    },
-    {
-      "name" : "Apple & Grape Juice",
-      "icon" : "assets/img/juice_apple_grape.png",
-      "qty" : "2",
-      "unit": "L, Price",
-      "price": "\$15.99",
-    },
-    {
-      "name" : "Orange Juice",
-      "icon" : "assets/img/orenge_juice.png",
-      "qty" : "2",
-      "unit": "L, Price",
-      "price": "\$15.49",
-    },
-    {
-      "name" : "Coca Cola Can",
-      "icon" : "assets/img/cocacola_can.png",
-      "qty" : "325",
-      "unit": "ml, Price",
-      "price": "\$4.49",
-    },
-    {
-      "name" : "Pepsi Can",
-      "icon" : "assets/img/pepsi_can.png",
-      "qty" : "325",
-      "unit": "ml, Price",
-      "price": "\$4.49",
-    },
+  late ExploreItemViewModel listVM;
 
-  ];
+  @override
+  void initState() {
+    super.initState();
+    listVM = Get.put( ExploreItemViewModel(widget.eObj) );
+  }
+
+  @override
+  void dispose() {
+    Get.delete<ExploreItemViewModel>();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context){
@@ -97,14 +70,15 @@ class _ExploreDetailViewState extends State<ExploreDetailView> {
         ],
 
         title: Text(
-          widget.eObj["name"].toString(),
+          widget.eObj.catName ?? "",
           style: TextStyle(
               color: TColor.primaryText,
               fontSize: 20,
               fontWeight: FontWeight.w700),
         ),
       ),
-      body:  GridView.builder(
+      body:  Obx(
+            () => GridView.builder(
               padding: const EdgeInsets.symmetric(
                   vertical: 15, horizontal: 20
               ),
@@ -113,36 +87,23 @@ class _ExploreDetailViewState extends State<ExploreDetailView> {
                   childAspectRatio: 0.75,
                   crossAxisSpacing: 15,
                   mainAxisSpacing: 15),
-              itemCount: listArr.length,
+              itemCount: listVM.listArr.length,
               itemBuilder: ((context,index) {
-                var pObj = listArr[index] as Map? ?? {};
+                var pObj = listVM.listArr[index];
                 return ProductCell(
-                  pObj: OfferProductModel.fromJson({
-                    "offer_price": 1.49,
-                    "start_date": "2024-12-31T18:30:00.000Z",
-                    "end_date": "2026-12-31T18:29:59.000Z",
-                    "prod_id": 6,
-                    "cat_id": 1,
-                    "brand_id": 1,
-                    "type_id": 1,
-                    "name": "Red Apple",
-                    "detail": "Apples contain key nutrients, including fiber and antioxidants. They may offer health benefits, including lowering blood sugar levels and benefitting heart health.",
-                    "unit_name": "kg",
-                    "unit_value": "1",
-                    "nutrition_weight": "182g",
-                    "price": 1.99,
-                    "image": "http://localhost:3001/img/product/202307310951365136W6nJvPCdzQ.png",
-                    "cat_name": "Frash Fruits & Vegetable",
-                    "type_name": "Pulses",
-                    "is_fav": 1,
-                    "avg_rating": 0
-                  },),
+                  pObj: pObj,
                   margin: 0,
                   weight: double.maxFinite,
-                  onPressed: () {},
+                  onPressed: () async {
+                    await Get.to( () => ProductDetails(
+                      pObj: pObj,
+                    ));
+                    listVM.serviceCallList();
+                  },
                   onCart: () {},
                 );
               }),
+            ),
       ),
     );
   }

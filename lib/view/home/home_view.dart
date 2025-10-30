@@ -81,7 +81,7 @@ class _HomeViewState extends State<HomeView> {
                           child: TextField(
                             controller: txtSearch,
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(vertical: 16),
+                              contentPadding: const EdgeInsets.symmetric(vertical: 16),
                                 prefixIcon: Padding(
                                   padding: const EdgeInsets.all(13.0),
                                   child: Image.asset("assets/img/search.png", width: 20, height: 20,),
