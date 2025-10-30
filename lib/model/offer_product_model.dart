@@ -15,7 +15,7 @@ class OfferProductModel {
   String? image;
   String? catName;
   String? typeName;
-  int? isFav;
+  bool? isFav;
   int? avgRating;
 
   OfferProductModel(
@@ -55,7 +55,7 @@ class OfferProductModel {
     image = json['image'];
     catName = json['cat_name'];
     typeName = json['type_name'];
-    isFav = json['is_fav'];
+    isFav = (json['is_fav'] as int ? ?? 0) == 1;
     avgRating = json['avg_rating'];
   }
 

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:nectar_groceries/view_model/favourite_view_model.dart';
 
 import '../../common/color_extension.dart';
-import '../../common/common_widget/cart_item_row.dart';
 import '../../common/common_widget/favourite_row.dart';
 import '../../common/common_widget/round_button.dart';
 
@@ -14,43 +16,7 @@ class FavouritesView extends StatefulWidget {
 
 class _FavouritesViewState extends State<FavouritesView> {
 
-  List listArr = [
-    {
-      "name" : "Sprite Can",
-      "icon" : "assets/img/sprite_can.png",
-      "qty" : "325",
-      "unit" : "ml, Price",
-      "price": "\$1.49",
-    },
-    {
-      "name" : "Diet Coke",
-      "icon" : "assets/img/diet_coke.png",
-      "qty" : "355",
-      "unit" : "ml, Price",
-      "price": "\$1.99",
-    },
-    {
-      "name" : "Apple & Grape Juice",
-      "icon" : "assets/img/juice_apple_grape.png",
-      "qty" : "2",
-      "unit" : "L, Price",
-      "price": "\$15.99",
-    },
-    {
-      "name" : "Coca Cola Can",
-      "icon" : "assets/img/cocacola_can.png",
-      "qty" : "325",
-      "unit" : "ml, Price",
-      "price": "\$4.49",
-    },
-    {
-      "name" : "Pepsi Can",
-      "icon" : "assets/img/pepsi_can.png",
-      "qty" : "325",
-      "unit" : "ml, Price",
-      "price": "\$4.49",
-    },
-  ];
+  final favVM = Get.find<FavouriteViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -74,10 +40,10 @@ class _FavouritesViewState extends State<FavouritesView> {
 
           ListView.separated(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              itemCount: listArr.length,
+              itemCount: favVM.listArr.length,
               separatorBuilder: (context, index) => const Divider(color: Colors.black26, height: 1,),
               itemBuilder: (context, index) {
-                var pObj = listArr[index] as Map ? ?? {};
+                var pObj = favVM.listArr[index];
                 return FavouriteRow(pObj: pObj, onPressed: (){
 
                 },);

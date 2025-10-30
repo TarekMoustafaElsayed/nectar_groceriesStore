@@ -1,9 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:nectar_groceries/model/offer_product_model.dart';
 
 import '../color_extension.dart';
 
 class FavouriteRow extends StatelessWidget {
-  final Map pObj;
+  final OfferProductModel pObj;
   final VoidCallback onPressed;
   const FavouriteRow({super.key, required this.pObj,required this.onPressed});
 
@@ -18,8 +20,13 @@ class FavouriteRow extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Row(
               children: [
-                Image.asset(
-                  pObj["icon"],
+
+                CachedNetworkImage(
+                  imageUrl: pObj.image ?? "",
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                   width: 60,
                   height: 60,
                   fit: BoxFit.contain,
@@ -32,7 +39,7 @@ class FavouriteRow extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      pObj["name"],
+                      pObj.name ?? "",
                       style: TextStyle(
                           color: TColor.primaryText,
                           fontSize: 16,
@@ -42,7 +49,7 @@ class FavouriteRow extends StatelessWidget {
                     const SizedBox(height: 2,),
 
                     Text(
-                      "${pObj["qty"]}${pObj["unit"]}",
+                      "${pObj.unitValue}${pObj.unitName}",
                       style: TextStyle(
                           color: TColor.secondaryText,
                           fontSize: 14,
@@ -55,7 +62,7 @@ class FavouriteRow extends StatelessWidget {
                 const SizedBox(width: 8,),
 
                 Text(
-                  pObj["price"],
+                  "\$${ pObj.offerPrice ?? pObj.price }",
                   style: TextStyle(
                       color: TColor.primaryText,
                       fontSize: 18,

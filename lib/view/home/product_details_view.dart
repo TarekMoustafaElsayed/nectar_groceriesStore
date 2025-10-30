@@ -114,15 +114,19 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       fontWeight: FontWeight.w700),
                                 ),
                               ),
-
-                              IconButton(
+                              Obx(
+                                    () => IconButton(
                                   onPressed: () {
+                                    detailVM.serviceCallAddRemoveFavourite();
                                   },
                                   icon: Image.asset(
-                                    "assets/img/fav.png",
+                                    detailVM.isFav.value
+                                        ? "assets/img/favorite.png"
+                                        : "assets/img/fav.png",
                                     width: 25,
                                     height: 25,
-                                  )
+                                  ),
+                                    ),
                               ),
                             ],
                           ),

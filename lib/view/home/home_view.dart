@@ -143,8 +143,10 @@ class _HomeViewState extends State<HomeView> {
 
                             return ProductCell(
                               pObj: pObj,
-                              onPressed: (){
-                                Get.to( () => ProductDetails(pObj: pObj,) );
+                              onPressed: () async {
+                                await Get.to( () => ProductDetails(pObj: pObj,) );
+
+                                homeVM.servicecCallHome();
                               },
                               onCart: (){},
                             );
@@ -172,8 +174,10 @@ class _HomeViewState extends State<HomeView> {
 
                             return ProductCell(
                               pObj: pObj,
-                              onPressed: (){
-                                Get.to( () => ProductDetails(pObj: pObj,) );
+                              onPressed: () async {
+                                await Get.to( () => ProductDetails(pObj: pObj,) );
+
+                                homeVM.servicecCallHome();
                               },
                               onCart: (){},
                             );
@@ -221,8 +225,10 @@ class _HomeViewState extends State<HomeView> {
 
                             return ProductCell(
                               pObj: pObj,
-                              onPressed: (){
-                                Get.to( () => ProductDetails(pObj: pObj,) );
+                              onPressed: () async {
+                                await Get.to( () => ProductDetails(pObj: pObj,) );
+
+                                homeVM.servicecCallHome();
                               },
                               onCart: (){},
                             );

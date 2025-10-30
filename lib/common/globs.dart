@@ -80,7 +80,7 @@ class Globs {
 }
 
 class SVKey {
-  static final mainUrl = dotenv.env['LOCAL_HOST'] ?? 'http://localhost:3001'; //Replace local host with your own IP Address
+  static final mainUrl = dotenv.env['LOCAL_HOST'] ?? 'http://localhost:3001';
   static final baseUrl = '$mainUrl/api/app/';
   static final nodeUrl = mainUrl;
 

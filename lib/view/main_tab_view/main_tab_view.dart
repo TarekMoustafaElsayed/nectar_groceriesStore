@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:nectar_groceries/view/explore/explore_view.dart';
 import 'package:nectar_groceries/view/favourite/favourite_view.dart';
 import 'package:nectar_groceries/view/home/home_view.dart';
+import 'package:nectar_groceries/view_model/favourite_view_model.dart';
 
 import '../../common/color_extension.dart';
 import '../account/account_view.dart';
@@ -18,6 +21,7 @@ class _MainTabViewState extends State<MainTabView>  with SingleTickerProviderSta
 
   TabController? controller;
   int selectTab = 0;
+  final favVM = Get.put(FavouriteViewModel());
 
   @override
   void initState() {
@@ -25,6 +29,11 @@ class _MainTabViewState extends State<MainTabView>  with SingleTickerProviderSta
     controller = TabController(length: 5, vsync: this);
     controller?.addListener((){
       selectTab = controller?.index ?? 0;
+
+      if(selectTab == 3){
+        favVM.servicecCallList();
+      }
+
       setState(() {
 
       });

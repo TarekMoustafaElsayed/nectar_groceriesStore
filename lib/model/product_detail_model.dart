@@ -12,7 +12,7 @@ class ProductDetailModel {
   String? createdDate;
   String? modifyDate;
   String? catName;
-  int? isFav;
+  bool? isFav;
   String? brandName;
   String? typeName;
   double? offerPrice;
@@ -58,7 +58,7 @@ class ProductDetailModel {
     createdDate = json['created_date'];
     modifyDate = json['modify_date'];
     catName = json['cat_name'];
-    isFav = json['is_fav'];
+    isFav = (json['is_fav'] as int ? ?? 0) == 1;
     brandName = json['brand_name'];
     typeName = json['type_name'];
     offerPrice = json['offer_price'];

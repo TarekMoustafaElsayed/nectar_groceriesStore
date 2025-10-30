@@ -15,9 +15,12 @@ class ProductDetailViewModel extends GetxController {
   final RxList<ImageModel> imageList = <ImageModel>[].obs;
   final isShowDetail = true.obs;
   final isShowNutrition = true.obs;
+  final isFav = false.obs;
   final qty = 1.obs;
 
-  ProductDetailViewModel(this.pObj);
+  ProductDetailViewModel(this.pObj){
+    isFav.value = pObj.isFav ?? false;
+  }
 
   String getPrice(){
     return (( pObj.offerPrice ?? pObj.price ?? 0.0) * qty.value).toStringAsFixed(2);
@@ -86,5 +89,26 @@ class ProductDetailViewModel extends GetxController {
       Get.snackbar(Globs.appName, err.toString());
     });
   }
+
+  void serviceCallAddRemoveFavourite () {
+    Globs.showHUD();
+    ServiceCall.post({
+      "prod_id": pObj.prodId.toString(),
+    }, SVKey.svAddRemoveFavorite, isToken: true, withSuccess: (resObj) async {
+      Globs.hideHUD();
+
+      if ( resObj[KKey.status] == "1" ){
+
+        isFav.value = !isFav.value;
+        Get.snackbar(Globs.appName, resObj[KKey.message]);
+      } else {}
+
+    }, failure: (err) async {
+      Globs.hideHUD();
+
+      Get.snackbar(Globs.appName, err.toString());
+    });
+  }
+
 
 }

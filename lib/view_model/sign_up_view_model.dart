@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:nectar_groceries/common/globs.dart';
 import 'package:nectar_groceries/view/main_tab_view/main_tab_view.dart';
+import 'package:nectar_groceries/view_model/splash_view_model.dart';
 
 import '../common/service_call.dart';
 
@@ -63,7 +64,7 @@ class SignUpViewModel extends GetxController {
         Globs.udBoolSet(true, Globs.userLogin);
 
         Get.delete<SignUpViewModel>();
-        Get.to( () => const MainTabView() );
+        Get.find<SplashViewModel>().goAfterLoginMainTab();
 
       } else {
 
