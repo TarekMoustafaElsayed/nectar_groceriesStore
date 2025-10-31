@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:nectar_groceries/view/account/address_list_view.dart';
 import 'package:nectar_groceries/view_model/splash_view_model.dart';
 
 import '../../common/color_extension.dart';
@@ -100,7 +101,12 @@ class _AccountViewState extends State<AccountView> {
                 AccountRow(
                     title: "Delivery Address",
                     icon: "assets/img/a_delivery_address.png",
-                    onPressed: (){}
+                    onPressed: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AddressListView()));
+                    }
                 ),
 
                 AccountRow(

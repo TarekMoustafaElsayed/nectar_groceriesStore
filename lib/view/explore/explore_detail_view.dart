@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:nectar_groceries/common/common_widget/product_cell.dart';
 import 'package:nectar_groceries/model/explore_category_model.dart';
-import 'package:nectar_groceries/model/offer_product_model.dart';
 import 'package:nectar_groceries/view/explore/filter_view.dart';
 import 'package:nectar_groceries/view_model/explore_item_view_model.dart';
 

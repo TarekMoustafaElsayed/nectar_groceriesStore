@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:nectar_groceries/common/globs.dart';
-import 'package:nectar_groceries/view/main_tab_view/main_tab_view.dart';
 import 'package:nectar_groceries/view_model/splash_view_model.dart';
 
 import '../common/service_call.dart';
