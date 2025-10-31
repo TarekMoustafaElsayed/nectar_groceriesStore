@@ -8,6 +8,7 @@ import 'package:nectar_groceries/view/explore/filter_view.dart';
 import 'package:nectar_groceries/view_model/explore_item_view_model.dart';
 
 import '../../common/color_extension.dart';
+import '../../view_model/cart_view_model.dart';
 import '../home/product_details_view.dart';
 
 class ExploreDetailView extends StatefulWidget {
@@ -100,7 +101,10 @@ class _ExploreDetailViewState extends State<ExploreDetailView> {
                     ));
                     listVM.serviceCallList();
                   },
-                  onCart: () {},
+                  onCart: () {
+                    CartViewModel.serviceCallAddToCart(
+                        pObj.prodId ?? 0 , 1 , () {});
+                  },
                 );
               }),
             ),

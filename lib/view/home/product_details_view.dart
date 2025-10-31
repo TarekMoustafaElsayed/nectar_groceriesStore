@@ -9,6 +9,7 @@ import 'package:nectar_groceries/view_model/product_detail_view_model.dart';
 
 import '../../common/color_extension.dart';
 import '../../common/common_widget/round_button.dart';
+import '../../view_model/cart_view_model.dart';
 
 class ProductDetails extends StatefulWidget {
   final OfferProductModel pObj;
@@ -402,7 +403,12 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                           RoundButton(
                             title: "Add To Basket",
-                            onPressed: (){},
+                            onPressed: (){
+                              CartViewModel.serviceCallAddToCart(
+                                  widget.pObj.prodId ?? 0 , detailVM.qty.value , () {
+                                    Navigator.pop(context);
+                              });
+                            },
                           ),
                         ],
                       ),

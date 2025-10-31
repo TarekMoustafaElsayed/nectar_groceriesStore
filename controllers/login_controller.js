@@ -16,13 +16,13 @@ module.exports.controller = (app, io, socket_list) => {
     const msg_removed_favorite = "removed favorite list successfully";
     const msg_invalid_item = "invalid product item";
     const msg_add_to_item = "item added into cart successfully ";
-    const msg_remove_to_cart = "item remove form cart successfully"
-    const msg_add_address = "address added successfully"
-    const msg_update_address = "address updated successfully"
-    const msg_remove_address = "address removed successfully"
+    const msg_remove_to_cart = "item removed from cart successfully";
+    const msg_add_address = "address added successfully";
+    const msg_update_address = "address updated successfully";
+    const msg_remove_address = "address removed successfully";
 
-    const msg_add_payment_method = "payment method added successfully"
-    const msg_remove_payment_method = "payment method removed successfully"
+    const msg_add_payment_method = "payment method added successfully";
+    const msg_remove_payment_method = "payment method removed successfully";
 
     app.post('/api/app/login', (req, res) => {
         helper.Dlog(req.body);

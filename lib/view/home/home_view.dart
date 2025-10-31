@@ -6,6 +6,7 @@ import 'package:nectar_groceries/common/common_widget/product_cell.dart';
 import 'package:nectar_groceries/common/common_widget/section_view.dart';
 import 'package:nectar_groceries/model/offer_product_model.dart';
 import 'package:nectar_groceries/view/home/product_details_view.dart';
+import 'package:nectar_groceries/view_model/cart_view_model.dart';
 import 'package:nectar_groceries/view_model/home_view_model.dart';
 
 import '../../common/color_extension.dart';
@@ -148,7 +149,12 @@ class _HomeViewState extends State<HomeView> {
 
                                 homeVM.servicecCallHome();
                               },
-                              onCart: (){},
+                              onCart: (){
+                                CartViewModel.serviceCallAddToCart( pObj.prodId ?? 0 , 1 ,
+                                        () {
+
+                                });
+                              },
                             );
                       } ),
                       ),
@@ -179,7 +185,10 @@ class _HomeViewState extends State<HomeView> {
 
                                 homeVM.servicecCallHome();
                               },
-                              onCart: (){},
+                              onCart: (){
+                                CartViewModel.serviceCallAddToCart(
+                                    pObj.prodId ?? 0 , 1 , () {});
+                              },
                             );
                           }),
                       ),
@@ -230,7 +239,10 @@ class _HomeViewState extends State<HomeView> {
 
                                 homeVM.servicecCallHome();
                               },
-                              onCart: (){},
+                              onCart: (){
+                                CartViewModel.serviceCallAddToCart(
+                                    pObj.prodId ?? 0 , 1 , () {});
+                              },
                             );
                           } ),
                       ),
