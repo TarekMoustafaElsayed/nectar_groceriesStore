@@ -1,17 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:nectar_groceries/common/common_widget/address_row.dart';
+import 'package:get/get.dart';
+import 'package:nectar_groceries/model/address_model.dart';
+import 'package:nectar_groceries/view_model/address_view_model.dart';
 
 import '../../common/color_extension.dart';
+import '../../common/common_widget/address_row.dart';
 import 'add_address_view.dart';
 
 class AddressListView extends StatefulWidget {
-  const AddressListView({super.key});
+  final Function(AddressModel aObj)? didSelect;
+  const AddressListView({super.key, this.didSelect});
 
   @override
   State<AddressListView> createState() => _AddressListViewState();
 }
 
 class _AddressListViewState extends State<AddressListView> {
+
+  final addressVM = Get.put(AddressViewModel());
+
+  //@override
+  //void dispose() {
+    // TODO: implement dispose
+    //Get.delete<AddressViewModel>();
+    //super.dispose();
+  //}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,11 +54,12 @@ class _AddressListViewState extends State<AddressListView> {
 
           actions: [
             IconButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const AddAddressView()));
+                onPressed: () async {
+
+                  addressVM.clearAll();
+
+                  await Get.to( () => const AddAddressView());
+                  addressVM.servicecCallList();
                 },
                 icon: Image.asset(
                   "assets/img/add.png",
@@ -57,11 +72,22 @@ class _AddressListViewState extends State<AddressListView> {
       ),
       backgroundColor: Colors.white,
 
-      body: ListView.separated(
+      body: Obx(
+            () =>ListView.separated(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           itemBuilder: (context, index) {
-            return const AddressRow();
-      }, separatorBuilder: (context, index) => const Divider(color: Colors.black12, height: 1,), itemCount: 5),
+            var aObj = addressVM.listArr[index];
+            return AddressRow(aObj: aObj, onTap: () {
+              if (widget.didSelect != null) {
+                widget.didSelect!(aObj);
+                Get.back();
+              }
+            },didUpdateDone: (){
+              addressVM.servicecCallList();
+            },);
+      }, separatorBuilder: (context, index) => const Divider(color: Colors.black12, height: 1,),
+                itemCount: addressVM.listArr.length),
+      ),
     );
   }
 }

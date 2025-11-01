@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:nectar_groceries/common/common_widget/line_textfield.dart';
 import 'package:nectar_groceries/common/common_widget/round_button.dart';
 import 'package:nectar_groceries/view_model/address_view_model.dart';
 
 import '../../common/color_extension.dart';
+import '../../model/address_model.dart';
 
 class AddAddressView extends StatefulWidget {
-  const AddAddressView({super.key});
+  final AddressModel? aObj;
+  final bool isEdit;
+  const AddAddressView({super.key, this.aObj , this.isEdit = false,});
 
   @override
   State<AddAddressView> createState() => _AddAddressViewState();
@@ -16,12 +18,12 @@ class AddAddressView extends StatefulWidget {
 
 class _AddAddressViewState extends State<AddAddressView> {
 
-  final addressVM = Get.put(AddressViewModel());
+  final addressVM = Get.find<AddressViewModel>();
 
   @override
   void dispose() {
     // TODO: implement dispose
-    Get.delete<AddressViewModel>();
+    //Get.delete<AddressViewModel>();
     super.dispose();
   }
 
@@ -44,7 +46,7 @@ class _AddAddressViewState extends State<AddAddressView> {
 
           centerTitle: true,
           title: Text(
-            "Add Address",
+            widget.isEdit ? "Edit Address" : "Add Address",
             style: TextStyle(
                 color: TColor.primaryText,
                 fontSize: 20,
@@ -129,7 +131,7 @@ class _AddAddressViewState extends State<AddAddressView> {
 
                   LineTextField(
                       title: "Name",
-                      placeholder: "Enter your name",
+                      placeholder: "Enter name",
                       controller: addressVM.txtName.value,
                   ),
 
@@ -139,7 +141,7 @@ class _AddAddressViewState extends State<AddAddressView> {
 
                   LineTextField(
                       title: "Mobile",
-                      placeholder: "Enter your mobile number",
+                      placeholder: "Enter mobile number",
                       keyboardType: TextInputType.phone ,
                       controller: addressVM.txtMobile.value,
                   ),
@@ -198,7 +200,18 @@ class _AddAddressViewState extends State<AddAddressView> {
                 height: 15,
               ),
 
-              RoundButton(title: "Add Address", onPressed: (){}),
+              RoundButton(title: widget.isEdit ? "Update" : "Add Address", onPressed: (){
+
+                if(widget.isEdit){
+                  addressVM.serviceCallUpdate(widget.aObj?.addressId ?? 0, () {
+                  Navigator.pop(context);
+                  });
+                }else{
+                  addressVM.serviceCallAdd(() {
+                    Navigator.pop(context);
+                  });
+                }
+              }),
             ],
           ),
         ),
