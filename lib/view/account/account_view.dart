@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:nectar_groceries/view/account/address_list_view.dart';
+import 'package:nectar_groceries/view/account/promo_code_view.dart';
 import 'package:nectar_groceries/view_model/splash_view_model.dart';
 
 import '../../common/color_extension.dart';
@@ -118,7 +119,12 @@ class _AccountViewState extends State<AccountView> {
                 AccountRow(
                     title: "Promo Code",
                     icon: "assets/img/a_promocode.png",
-                    onPressed: (){}
+                    onPressed: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PromoCodeView()));
+                    }
                 ),
 
                 AccountRow(
