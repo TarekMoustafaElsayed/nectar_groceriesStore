@@ -19,7 +19,6 @@ class PromoCodeViewModel extends GetxController {
     }
 
     servicecCallList();
-
   }
 
 
