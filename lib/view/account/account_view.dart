@@ -89,6 +89,12 @@ class _AccountViewState extends State<AccountView> {
                 ),
 
                 AccountRow(
+                    title: "Applette AI",
+                    icon: "assets/img/appletteAiIcon.png",
+                    onPressed: (){}
+                ),
+
+                AccountRow(
                     title: "Orders",
                     icon: "assets/img/a_order.png",
                     onPressed: (){}
@@ -149,7 +155,7 @@ class _AccountViewState extends State<AccountView> {
                     onPressed: (){}
                 ),
 
-                const SizedBox(width: 20,height: 80,), //Tiny adjustment to move the logout a bit downwards
+                const SizedBox(width: 20,height: 18,), //Tiny re-adjustment to move the logout a bit
 
                 Padding(
                   //padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 90),

@@ -148,6 +148,7 @@ class _MyCartViewState extends State<MyCartView> {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
         isDismissible: false,
+        isScrollControlled: true,
         context: context,
         builder: (context) {
           return const CheckoutView();

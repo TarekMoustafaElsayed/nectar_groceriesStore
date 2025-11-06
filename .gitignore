@@ -36,9 +36,6 @@ migrate_working_dir/
 /build/
 /coverage/
 flutter/
-ios/flutter
-ios/Podfile.lock
-ios/Runner.xcworkspace/
 macos/flutter
 macos/Podfile.lock
 macos/Runner.xcworkspace/

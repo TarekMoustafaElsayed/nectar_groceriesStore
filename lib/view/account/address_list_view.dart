@@ -16,7 +16,6 @@ class AddressListView extends StatefulWidget {
 }
 
 class _AddressListViewState extends State<AddressListView> {
-
   final addressVM = Get.put(AddressViewModel());
 
   //@override

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nectar_groceries/common/common_widget/payment_method_row.dart';
-import 'package:nectar_groceries/model/address_model.dart';
+import 'package:nectar_groceries/model/payment_model.dart';
 import 'package:nectar_groceries/view/account/add_payment_method_view.dart';
 import 'package:nectar_groceries/view_model/payment_view_model.dart';
 
 import '../../common/color_extension.dart';
 
 class PaymentMethodListView extends StatefulWidget {
-  final Function(AddressModel aObj)? didSelect;
+  final Function(PaymentModel aObj)? didSelect;
   const PaymentMethodListView({super.key, this.didSelect});
 
   @override
@@ -79,6 +79,12 @@ class _PaymentMethodListViewState extends State<PaymentMethodListView> {
               var pObj = payVM.listArr[index];
               return PaymentMethodRow(
                 pObj: pObj,
+                onTap: (){
+                  if(widget.didSelect != null){
+                    widget.didSelect!(pObj);
+                    Get.back();
+                  }
+                },
                 didUpdateDone: (){
                 payVM.servicecCallList();
               },);
