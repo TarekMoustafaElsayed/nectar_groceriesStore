@@ -36,9 +36,6 @@ migrate_working_dir/
 /build/
 /coverage/
 flutter/
-macos/flutter
-macos/Podfile.lock
-macos/Runner.xcworkspace/
 
 # Symbolication related
 app.*.symbols
