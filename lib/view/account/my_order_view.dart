@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nectar_groceries/common/common_widget/my_order_row.dart';
-import 'package:nectar_groceries/model/address_model.dart';
+import 'package:nectar_groceries/view/account/my_order_detail_view.dart';
 import 'package:nectar_groceries/view_model/my_orders_view_model.dart';
 
 import '../../common/color_extension.dart';
 
 class MyOrdersView extends StatefulWidget {
-  final Function(AddressModel aObj)? didSelect;
-  const MyOrdersView({super.key, this.didSelect});
+  const MyOrdersView({super.key});
 
   @override
   State<MyOrdersView> createState() => _MyOrdersViewState();
@@ -53,18 +52,20 @@ class _MyOrdersViewState extends State<MyOrdersView> {
       backgroundColor: Colors.white,
 
       body: Obx(
-            () =>  myVM.listArr.isEmpty ? Text(
-              "No Order Placed",
-              style: TextStyle(
-                  color: TColor.primaryText,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700),
+            () =>  myVM.listArr.isEmpty ? Center(
+              child: Text(
+                "No Order Placed",
+                style: TextStyle(
+                    color: TColor.primaryText,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700),
+              ),
             ) : ListView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             itemBuilder: (context, index) {
               var mObj = myVM.listArr[index];
               return MyOrderRow(mObj: mObj, onTap: (){
-
+                Get.to(() => MyOrdersDetailView(mObj: mObj));
               });
             },
                 itemCount: myVM.listArr.length),

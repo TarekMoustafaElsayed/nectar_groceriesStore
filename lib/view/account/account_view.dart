@@ -96,7 +96,7 @@ class _AccountViewState extends State<AccountView> {
                 ),
 
                 AccountRow(
-                    title: "Orders",
+                    title: "My Orders",
                     icon: "assets/img/a_order.png",
                     onPressed: (){
                       Get.to(() => const MyOrdersView());

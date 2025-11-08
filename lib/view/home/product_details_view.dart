@@ -4,7 +4,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:nectar_groceries/model/offer_product_model.dart';
-import 'package:nectar_groceries/view_model/login_view_model.dart';
 import 'package:nectar_groceries/view_model/product_detail_view_model.dart';
 
 import '../../common/color_extension.dart';
