@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
 import 'package:nectar_groceries/common/common_widget/line_textfield.dart';
 import 'package:nectar_groceries/view/login/select_location_view.dart';
+import 'package:nectar_groceries/view_model/forgot_password_view_model.dart';
 
 import '../../common/color_extension.dart';
 
@@ -12,8 +15,7 @@ class VerificationView extends StatefulWidget {
 }
 
 class _VerificationViewState extends State<VerificationView> {
-
-  TextEditingController txtOTP = TextEditingController();
+  final forgotVM = Get.put(ForgotPasswordViewModel());
 
   @override
   Widget build(BuildContext context){
@@ -68,7 +70,7 @@ class _VerificationViewState extends State<VerificationView> {
 
                       const SizedBox(height: 15,),
 
-                      LineTextField(title: "Code", placeholder: " - - - -", controller: txtOTP,),
+                      LineTextField(title: "Code", placeholder: " - - - -", controller: forgotVM.txtResetCode.value,),
 
                       SizedBox(
                         height: media.width * 0.3,
@@ -80,7 +82,7 @@ class _VerificationViewState extends State<VerificationView> {
 
                           TextButton(
                               onPressed: () {
-
+                                forgotVM.servicecCallRequest(isResend: true);
                               },
                               child: Text(
                                 "Resend Code",
@@ -94,12 +96,7 @@ class _VerificationViewState extends State<VerificationView> {
                           InkWell(
                             borderRadius: BorderRadius.circular(30),
                             onTap: (){
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                      const SelectLocationView())
-                              );
+                              forgotVM.servicecCallVerify();
                             },
                             child: Container(
                               width: 60,

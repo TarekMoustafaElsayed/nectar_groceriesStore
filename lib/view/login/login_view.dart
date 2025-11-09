@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nectar_groceries/view/login/verification_view.dart';
-import 'package:nectar_groceries/view/main_tab_view/main_tab_view.dart';
+import 'package:nectar_groceries/view/login/forgot_password_view.dart';
 import 'package:nectar_groceries/view_model/login_view_model.dart';
 import '../../common/color_extension.dart';
 import '../../common/common_widget/line_textfield.dart';
@@ -117,7 +116,7 @@ class _LogInViewState extends State<LogInView> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         TextButton(onPressed: (){
-
+                          Get.to(() => const ForgotPasswordView());
                         }, child: Text(
                           "Forgot Password?",
                           style: TextStyle(
