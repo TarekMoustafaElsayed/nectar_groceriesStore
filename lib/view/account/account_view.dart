@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:nectar_groceries/view/account/address_list_view.dart';
+import 'package:nectar_groceries/view/account/my_detail_view.dart';
 import 'package:nectar_groceries/view/account/my_order_view.dart';
 import 'package:nectar_groceries/view/account/notification_view.dart';
 import 'package:nectar_groceries/view/account/payment_method_view.dart';
@@ -107,7 +108,9 @@ class _AccountViewState extends State<AccountView> {
                 AccountRow(
                     title: "My Details",
                     icon: "assets/img/a_my_detail.png",
-                    onPressed: (){}
+                    onPressed: (){
+                      Get.to(() => const MyDetailView());
+                    },
                 ),
 
                 AccountRow(
