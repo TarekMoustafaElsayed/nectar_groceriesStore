@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:nectar_groceries/view_model/cart_view_model.dart';
 import 'package:nectar_groceries/view_model/favourite_view_model.dart';
 
 import '../../common/color_extension.dart';
@@ -44,9 +45,10 @@ class _FavouritesViewState extends State<FavouritesView> {
               separatorBuilder: (context, index) => const Divider(color: Colors.black26, height: 1,),
               itemBuilder: (context, index) {
                 var pObj = favVM.listArr[index];
-                return FavouriteRow(pObj: pObj, onPressed: (){
-
-                },);
+                return FavouriteRow(
+                  pObj: pObj,
+                  onPressed: (){},
+                );
               }
           ),
 
@@ -56,10 +58,20 @@ class _FavouritesViewState extends State<FavouritesView> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 
-                RoundButton(title: "Add All To Cart", onPressed: (){
-
-                })
-              ],),
+                RoundButton(
+                    title: "Add All To Cart",
+                    onPressed: () {
+                      for (var product in favVM.listArr) {
+                        if (product.isFav == true && product.prodId != null) {
+                          CartViewModel.serviceCallAddToCart(
+                            product.prodId ?? 0, 1, (){},
+                          );
+                        }
+                      }
+                    }
+                ),
+              ],
+            ),
           ),
         ],
       ),
