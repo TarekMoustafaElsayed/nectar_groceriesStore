@@ -16,7 +16,7 @@ class OfferProductModel {
   String? catName;
   String? typeName;
   bool? isFav;
-  int? avgRating;
+  double? avgRating;
 
   OfferProductModel(
       {this.offerPrice,
@@ -56,7 +56,7 @@ class OfferProductModel {
     catName = json['cat_name'];
     typeName = json['type_name'];
     isFav = (json['is_fav'] as int ? ?? 0) == 1;
-    avgRating = json['avg_rating'];
+    avgRating = double.tryParse(json['avg_rating'].toString()) ?? 0.0;
   }
 
   Map<String, dynamic> toJson() {

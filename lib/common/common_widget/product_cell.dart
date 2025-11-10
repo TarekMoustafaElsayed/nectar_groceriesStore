@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:nectar_groceries/model/offer_product_model.dart';
 import '../color_extension.dart';
 
@@ -71,7 +72,24 @@ class ProductCell extends StatelessWidget {
                   fontWeight: FontWeight.w500),
             ),
 
-            const Spacer(),
+            if((pObj.avgRating ?? 0.0) > 0.0)
+            IgnorePointer(
+              ignoring: true,
+              child: RatingBar.builder(
+                initialRating: pObj.avgRating ?? 0.0,
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemSize: 15,
+                itemPadding: const EdgeInsets.symmetric(horizontal: 1.0),
+                itemBuilder: (context, _) => const Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                onRatingUpdate: (rate) {},
+              ),
+            ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

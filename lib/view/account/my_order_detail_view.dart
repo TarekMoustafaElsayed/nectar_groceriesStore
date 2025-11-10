@@ -205,12 +205,16 @@ class _MyOrdersDetailViewState extends State<MyOrdersDetailView> {
                               context,
                               PopupLayout(
                                   child: WriteReviewView(
-                                      didSubmit: (rating,message) {})));
+                                      didSubmit: (rating,message) {
 
-                          //Get.to(() => PopupLayout(
-                              //child: WriteReviewView(
-                                  //didSubmit: (rating,message) {})));
-                      },
+                                        detailVM.serviceCallGiveRatingReview(
+                                            pObj.prodId?.toString() ?? "",
+                                            rating.toStringAsFixed(1),
+                                            message, () {
+                                              Navigator.pop(context);
+                                            });
+                                      })));
+                          },
                     );
                   },
                   itemCount: detailVM.cartList.length),
