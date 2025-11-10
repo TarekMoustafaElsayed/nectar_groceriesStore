@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nectar_groceries/common/common_widget/my_order_row.dart';
 import 'package:nectar_groceries/common/common_widget/order_item_row.dart';
+import 'package:nectar_groceries/common/common_widget/popup_layout.dart';
 import 'package:nectar_groceries/model/my_order_model.dart';
+import 'package:nectar_groceries/view/account/write_review_view.dart';
 import 'package:nectar_groceries/view_model/my_order_detail_view_model.dart';
 
 import '../../common/color_extension.dart';
@@ -196,7 +198,19 @@ class _MyOrdersDetailViewState extends State<MyOrdersDetailView> {
                   itemBuilder: (context, index) {
                     var pObj = detailVM.cartList[index];
                     return OrderItemRow(
-                        pObj: pObj
+                        pObj: pObj,
+                      showReviewButton: widget.mObj.orderStatus == 3 && pObj.rating == 0.0,
+                      onWriteReviewPressed: (){
+                          Navigator.push(
+                              context,
+                              PopupLayout(
+                                  child: WriteReviewView(
+                                      didSubmit: (rating,message) {})));
+
+                          //Get.to(() => PopupLayout(
+                              //child: WriteReviewView(
+                                  //didSubmit: (rating,message) {})));
+                      },
                     );
                   },
                   itemCount: detailVM.cartList.length),

@@ -1,23 +1,27 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:nectar_groceries/common/common_widget/round_button.dart';
 import 'package:nectar_groceries/model/product_detail_model.dart';
 
 import '../color_extension.dart';
 
 class OrderItemRow extends StatelessWidget {
+  final bool showReviewButton;
   final ProductDetailModel pObj;
+  final VoidCallback? onWriteReviewPressed;
 
   const OrderItemRow(
       {
         super.key,
-        required this.pObj
+        required this.pObj,
+        this.showReviewButton = false,
+        this.onWriteReviewPressed
       });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-        height: 100,
         margin: const EdgeInsets.symmetric(vertical: 4),
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
         decoration: BoxDecoration(
@@ -131,7 +135,18 @@ class OrderItemRow extends StatelessWidget {
 
               ],
             ),
-
+            if (showReviewButton)
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: RoundButton(
+                    title: "Write A Review",
+                    onPressed: () {
+                      if(onWriteReviewPressed != null){
+                        onWriteReviewPressed!();
+                      }
+                    }
+                ),
+              ),
 
           ],
         ),
